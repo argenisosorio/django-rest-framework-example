@@ -1,12 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-	
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from app.serializers import UserSerializer, GroupSerializer
 
-class TestView(APIView):
+
+class UserViewSet(viewsets.ModelViewSet):
     """
-    Our First REST API for GET Requests
+    API endpoint that allows users to be viewed or edited.
     """
- 
-    def get(self, request, format=None):
-        return Response({'detail': "Hello REST World"})
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
