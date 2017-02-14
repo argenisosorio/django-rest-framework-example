@@ -11,6 +11,8 @@ Python 2.7.3
 ```
 $ pip install -r requirements.txt
 
+$ python manage.py migrate
+
 $ pip manage.py createsuperuser
 
 $ python manage.py migrate
