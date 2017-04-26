@@ -17,11 +17,15 @@ $ python manage.py runserver
 ```
 
 ## Manage users
+
 Log in with the administrator in:
-[Localhost:8000/admin](127.0.0.1:8000/admin)
+
+[127.0.0.1:8000/admin](127.0.0.1:8000/admin)
 
 See results in:
+
 [127.0.0.1:8000/users](127.0.0.1:8000/users)
+
 [127.0.0.1:8000/groups](127.0.0.1:8000/groups)
 
 ## Hello world
