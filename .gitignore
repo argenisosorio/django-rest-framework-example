@@ -7,5 +7,5 @@
 *.swp
 *.sqlite3
 *.db
-/project/app/migrationss
-/project/settings.pyy
+/series/migrations/
+

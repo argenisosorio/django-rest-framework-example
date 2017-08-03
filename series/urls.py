@@ -4,5 +4,7 @@ from django.contrib import admin
 from series import views
 
 urlpatterns = [
-    url(r'^', views.TestView.as_view(), name='test-view'),
+    #url(r'^$', views.index, name='index'),
+    url(r'^$', views.serie_list),
+    #url(r'^series/$', views.serie_list),
 ]
