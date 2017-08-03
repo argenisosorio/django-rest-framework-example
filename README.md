@@ -29,7 +29,7 @@ See results in:
 ## Hello world example
 In the helloworld branch we have a simple view as an example
 
-## ModelSerializer example
+## Model Serializer example
 In the series branch is a example to model serializer, we record
 a TV series with the fields (name, release_date, rating, category)
 from the django admin, and show the list of series in json format.
