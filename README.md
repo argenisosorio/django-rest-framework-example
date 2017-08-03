@@ -26,5 +26,10 @@ See results in:
 
 [127.0.0.1:8000/groups](127.0.0.1:8000/groups)
 
-## Hello world
+## Hello world example
 In the helloworld branch we have a simple view as an example
+
+## ModelSerializer example
+In the series branch is a example to model serializer, we record
+a TV series with the fields (name, release_date, rating, category)
+from the django admin, and show the list of series in json format.
