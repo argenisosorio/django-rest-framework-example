@@ -5,6 +5,7 @@ from series import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^users/$', views.user_list),
     url(r'^series/$', views.serie_list),
     url(r'^series/(?P<pk>[0-9]+)/$', views.serie_detail),
 ]

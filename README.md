@@ -3,6 +3,8 @@
 In this example, we record a TV series with the fields (name, release_date, rating, category)
 from the django admin, and show the list of series in json format.
 
+Too show all django users registered in format json.
+
 ## Requirements
 ```
 Python 2.7.3

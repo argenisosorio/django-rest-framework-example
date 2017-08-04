@@ -4,7 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from series.models import Serie
-from series.serializers import SerieSerializer
+from series.serializers import SerieSerializer, UserSerializer
+from django.contrib.auth.models import User
+from rest_framework import viewsets
 
 
 def index(request):
@@ -12,6 +14,16 @@ def index(request):
     Index view, to tray.
     """
     return HttpResponse("Hello, world!")
+
+
+def user_list(request):
+    """
+    List all users.
+    """
+    if request.method == 'GET':
+        usuarios = User.objects.all()
+        serializer = UserSerializer(usuarios, many=True)
+        return JSONResponse(serializer.data)
 
 
 class JSONResponse(HttpResponse):
