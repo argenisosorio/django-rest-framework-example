@@ -11,6 +11,7 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import generics
 
 
 def index(request):
@@ -29,7 +30,28 @@ class JSONResponse(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
 
+##### Using CBV Generics ####
+class UsersList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class SeriesList(generics.ListCreateAPIView):
+    queryset = Serie.objects.all()
+    serializer_class = SerieSerializer
+
+
+class SerieDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Serie.objects.all()
+    serializer_class = SerieSerializer
+
+##### Using CBV ####
+'''
 class UsersList(APIView):
     """
     List all Users
@@ -106,8 +128,9 @@ class SerieDetail(APIView):
         serie = self.get_object(pk)
         serie.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+'''
 
-
+##### Using FBV ####
 '''
 def user_list(request):
     """
