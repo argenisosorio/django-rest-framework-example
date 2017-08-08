@@ -21,15 +21,6 @@ def index(request):
     return HttpResponse("Hello, world!")
 
 
-class JSONResponse(HttpResponse):
-    """
-    An HttpResponse that renders its content into JSON.
-    """
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
-
 ##### Using CBV Generics ####
 class UsersList(generics.ListCreateAPIView):
     queryset = User.objects.all()
@@ -132,6 +123,16 @@ class SerieDetail(APIView):
 
 ##### Using FBV ####
 '''
+class JSONResponse(HttpResponse):
+    """
+    An HttpResponse that renders its content into JSON.
+    """
+    def __init__(self, data, **kwargs):
+        content = JSONRenderer().render(data)
+        kwargs['content_type'] = 'application/json'
+        super(JSONResponse, self).__init__(content, **kwargs)
+
+
 def user_list(request):
     """
     List all users.

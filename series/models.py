@@ -24,6 +24,7 @@ class Serie(models.Model):
     release_date = models.DateField()
     rating = models.IntegerField(default=0)
     category = models.CharField(max_length=10, choices=CATEGORIES_CHOICES)
+    owner = models.ForeignKey('auth.User', related_name='series')
 
     def __unicode__(self):
         return self.name
