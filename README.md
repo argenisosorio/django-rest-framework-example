@@ -36,6 +36,6 @@ from the django admin, and show the list of series in json format.
 
 Too show all django users registered in format json.
 
-## Model Serializer example using CBV
+## Model Serializer example using CBV and There are Users Related to Series
 In the series_cbv branch is a same example at the series but
 using classes based views.
