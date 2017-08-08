@@ -7,6 +7,10 @@ from series.models import Serie
 from series.serializers import SerieSerializer, UserSerializer
 from django.contrib.auth.models import User
 from rest_framework import viewsets
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 
 def index(request):
@@ -14,16 +18,6 @@ def index(request):
     Index view, to tray.
     """
     return HttpResponse("Hello, world!")
-
-
-def user_list(request):
-    """
-    List all users.
-    """
-    if request.method == 'GET':
-        usuarios = User.objects.all()
-        serializer = UserSerializer(usuarios, many=True)
-        return JSONResponse(serializer.data)
 
 
 class JSONResponse(HttpResponse):
@@ -34,6 +28,95 @@ class JSONResponse(HttpResponse):
         content = JSONRenderer().render(data)
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
+
+
+class UsersList(APIView):
+    """
+    List all Users
+    """
+    def get(self, request, format=None):
+        usuarios = User.objects.all()
+        serializer = UserSerializer(usuarios, many=True)
+        return Response(serializer.data)
+
+
+class UserDetail(APIView):
+    """
+    Retrieve, update or delete a user instance.
+    """
+    def get_object(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        usuario = self.get_object(pk)
+        serializer = UserSerializer(usuario)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        usuario = self.get_object(pk)
+        serializer = UserSerializer(usuario, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        usuario = self.get_object(pk)
+        usuario.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class SeriesList(APIView):
+    """
+    List all Series
+    """
+    def get(self, request, format=None):
+        series = Serie.objects.all()
+        serializer = SerieSerializer(series, many=True)
+        return Response(serializer.data)
+
+
+class SerieDetail(APIView):
+    """
+    Retrieve, update or delete a serie instance.
+    """
+    def get_object(self, pk):
+        try:
+            return Serie.objects.get(pk=pk)
+        except Serie.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        serie = self.get_object(pk)
+        serializer = SerieSerializer(serie)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        serie = self.get_object(pk)
+        serializer = SerieSerializer(serie, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        serie = self.get_object(pk)
+        serie.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+'''
+def user_list(request):
+    """
+    List all users.
+    """
+    if request.method == 'GET':
+        usuarios = User.objects.all()
+        serializer = UserSerializer(usuarios, many=True)
+        return JSONResponse(serializer.data)
 
 
 @csrf_exempt
@@ -80,3 +163,4 @@ def serie_detail(request, pk):
     elif request.method == 'DELETE':
         serie.delete()
         return HttpResponse(status=204)
+'''

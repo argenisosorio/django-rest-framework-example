@@ -7,5 +7,3 @@
 *.swp
 *.sqlite3
 *.db
-/series/migrations/
-
