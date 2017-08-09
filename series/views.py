@@ -12,6 +12,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
+from rest_framework import permissions
 
 
 def index(request):
@@ -23,23 +24,33 @@ def index(request):
 
 ##### Using CBV Generics ####
 class UsersList(generics.ListCreateAPIView):
+    """
+    con permission_classes nos asegurarnos que solamente usuarios
+    autenticados tengan permisos para crear, actualizar y eliminar
+    series.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class SeriesList(generics.ListCreateAPIView):
     queryset = Serie.objects.all()
     serializer_class = SerieSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class SerieDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Serie.objects.all()
     serializer_class = SerieSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
 
 ##### Using CBV ####
 '''
