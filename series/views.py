@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
 from rest_framework import permissions
+from series.permissions import IsOwnerOrReadOnly
 
 
 def index(request):
@@ -25,7 +26,7 @@ def index(request):
 ##### Using CBV Generics ####
 class UsersList(generics.ListCreateAPIView):
     """
-    con permission_classes nos asegurarnos que solamente usuarios
+    Con permission_classes nos asegurarnos que solamente usuarios
     autenticados tengan permisos para crear, actualizar y eliminar
     series.
     """
@@ -47,9 +48,14 @@ class SeriesList(generics.ListCreateAPIView):
 
 
 class SerieDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Con permission_classes = IsOwnerOrReadOnly nos asegurarnos que solamente
+    el usuario que agrego una serie puedan editarla, sería un permiso a nivel de objeto.
+    """
     queryset = Serie.objects.all()
     serializer_class = SerieSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
 
 
 ##### Using CBV ####
