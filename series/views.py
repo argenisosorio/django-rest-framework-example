@@ -22,8 +22,10 @@ def index(request):
     """
     return HttpResponse("Hello, world!")
 
+##############################
+##### Using CBV Generics #####
+##############################
 
-##### Using CBV Generics ####
 class UsersList(generics.ListCreateAPIView):
     """
     Con permission_classes nos asegurarnos que solamente usuarios
@@ -57,8 +59,10 @@ class SerieDetail(generics.RetrieveUpdateDestroyAPIView):
     #permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
 
-
+####################
 ##### Using CBV ####
+####################
+
 '''
 class UsersList(APIView):
     """
@@ -138,7 +142,10 @@ class SerieDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 '''
 
-##### Using FBV ####
+#####################
+##### Using FBV #####
+#####################
+
 '''
 class JSONResponse(HttpResponse):
     """
