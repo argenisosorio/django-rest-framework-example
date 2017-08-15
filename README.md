@@ -19,12 +19,13 @@ $ python manage.py runserver
 ## Manage users
 Log in with the administrator in:
 
-[127.0.0.1:8000/admin](127.0.0.1:8000/admin)
+[http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
 
 See results in:
-[127.0.0.1:8000/users](127.0.0.1:8000/users)
 
-[127.0.0.1:8000/groups](127.0.0.1:8000/groups)
+[http://127.0.0.1:8000/users](http://127.0.0.1:8000/users)
+
+[http://127.0.0.1:8000/groups](http://127.0.0.1:8000/groups)
 
 ## Hello world example
 In the helloworld branch we have a simple view as an example
