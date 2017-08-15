@@ -1,4 +1,5 @@
 # Django Rest Framework - Example
+In this example we use the Django Rest Framework viewsets
 
 ## Requirements
 ```
