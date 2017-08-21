@@ -23,19 +23,23 @@ def index(request):
 class UsersList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    http_method_names = ['get','head']
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    http_method_names = ['get','head']
 
 
 class SeriesList(generics.ListCreateAPIView):
     queryset = Serie.objects.all()
     serializer_class = SerieSerializer
+    http_method_names = ['get','head']
 
 
 class SerieDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Serie.objects.all()
     serializer_class = SerieSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly,)
+    http_method_names = ['get','head']
