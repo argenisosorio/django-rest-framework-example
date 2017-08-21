@@ -24,6 +24,7 @@ class UsersList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     http_method_names = ['get','head']
+    filter_fields = ('id', 'username', 'email',)
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
