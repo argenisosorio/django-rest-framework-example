@@ -4,10 +4,6 @@ from django.db import models
 
 
 class Serie(models.Model):
-    """
-    Crearemos un modelo llamado Serie, dentro de nuestra app series, el cual
-    representará toda la información que posee una serie de TV.
-    """
     HORROR = 'horror'
     COMEDY = 'comedy'
     ACTION = 'action'
