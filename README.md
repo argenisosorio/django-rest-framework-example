@@ -1,4 +1,4 @@
-# Django Rest Framework - ModelSerializer, using Class Based Views and There are Users Related to Series
+# Django Rest Framework - ModelSerializer, using Function Based Views and There are Users Related to Series
 
 In this example, we record a TV series with the fields (name, release_date, rating, category)
 from the django admin, and show the list of series in json format.
