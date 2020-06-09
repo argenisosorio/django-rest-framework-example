@@ -5,7 +5,8 @@ In this example we use the Django Rest Framework viewsets
 ```
 Python==2.7.3
 Django==1.10.1
-djangorestframework
+djangorestframework==3.5.0
+requests==2.23.0
 ```
 
 ## Run Project
