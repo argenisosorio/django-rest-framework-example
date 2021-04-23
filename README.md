@@ -13,8 +13,7 @@ requests==2.23.0
 ```
 $ pip install -r requirements.txt
 $ python manage.py migrate
-$ pip manage.py createsuperuser
-$ python manage.py migrate
+$ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
